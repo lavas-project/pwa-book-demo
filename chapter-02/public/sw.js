@@ -2,9 +2,9 @@
  * service worker 安装激活
  */
 
-var dataCacheName = 'new-data-v1';
-var cacheName = 'first-pwa-app-1';
-var filesToCache = [
+let dataCacheName = 'new-data-v1';
+let cacheName = 'first-pwa-app-1';
+let filesToCache = [
   '/',
   '/index.html',
   '/detail.html',
@@ -16,14 +16,20 @@ var filesToCache = [
   '/style/fonts/iconfont.js',
   '/style/fonts/iconfont.svg',
   '/style/fonts/iconfont.ttf',
-  '/style/fonts/iconfont.woff'
+  '/style/fonts/iconfont.woff',
+  '/assets/images/sidebar_bg.jpg',
+  '/assets/images/loading1.gif',
+  '/assets/images/icons/icon_144x144.png',
+  '/assets/images/icons/icon_152x152.png',
+  '/assets/images/icons/icon_192x192.png',
+  '/assets/images/icons/icon_512x512.png'
 ];
 
 self.addEventListener('install', function(e) {
-  console.log('[ServiceWorker] Install');
+  console.log('SW Install');
   e.waitUntil(
     caches.open(cacheName).then(function(cache) {
-      console.log('[ServiceWorker] Caching app shell');
+      console.log('SW precaching');
       return cache.addAll(filesToCache);
     })
   );
@@ -31,12 +37,12 @@ self.addEventListener('install', function(e) {
 });
 
 self.addEventListener('activate', function(e) {
-  console.log('[ServiceWorker] Activate');
+  console.log('SW Activate');
   e.waitUntil(
     caches.keys().then(function(keyList) {
       return Promise.all(keyList.map(function(key) {
         if (key !== cacheName && key !== dataCacheName) {
-          console.log('[ServiceWorker] Removing old cache', key);
+          console.log('SW Removing old cache', key);
           return caches.delete(key);
         }
       }));
@@ -46,14 +52,17 @@ self.addEventListener('activate', function(e) {
 });
 
 self.addEventListener('fetch', function(e) {
-  console.log('[Service Worker] Fetch', e.request.url);
-  var dataUrl = 'https://boscdn.baidu.com/assets/pwabook';
+  console.log('SW Fetch', e.request.url);
+  // 如果数据相关的请求，需要请求更新缓存
+  let dataUrl = '/mockData/';
   if (e.request.url.indexOf(dataUrl) > -1) {
     e.respondWith(
       caches.open(dataCacheName).then(function(cache) {
         return fetch(e.request).then(function(response){
           cache.put(e.request.url, response.clone());
           return response;
+        }).catch(function () {
+          return caches.match(e.request);
         });
       })
     );

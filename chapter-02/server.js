@@ -28,8 +28,8 @@ app.get('/detail.html*', function (req, res) {
     res.sendFile('detail.html', {root: 'public'});
 });
 
-app.get('/api/:id', function(req, res) {
-	res.json(getMockData('/api/' + req.params.id));
+app.get('/mockData/:id', function(req, res) {
+	res.json(getMockData('/mockData/' + req.params.id));
 });
 
 // 启动服务器
