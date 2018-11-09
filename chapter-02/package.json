@@ -1,0 +1,10 @@
+{
+  "name": "pwa-book-demo",
+  "description": "PWA book demos",
+  "scripts": {
+    "server": "node server.js"
+  },
+  "devDependencies": {
+    "express": "^4.16.4"
+  }
+}
