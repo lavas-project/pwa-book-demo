@@ -133,16 +133,12 @@ header {
   }
 
 .loading {
-  /*display: none;*/
   width: 100%;
-  height: 100px;
-  line-height: 100px;
+  height: 100%;
   text-align: center;
   color: #ccc;
-  background: url('../assets/images/loading1.gif') no-repeat center center;
+  background: url('../assets/images/loading1.gif') no-repeat 0px -60px;
   background-size: 100%;
-  position: absolute;
-  top: 130px;
 }
 
 .mask {
