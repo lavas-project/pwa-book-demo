@@ -68,5 +68,10 @@ module.exports = {
         // URL of appshell page
         // ONLY works in SSR mode
         appshellUrl: '/appshell'
+    },
+    middleware: {
+        all: [], // 同时运行在客户端和服务端
+        client: ['my-first-middleware'], // 仅客户端
+        server: [] // 仅服务端
     }
 };
