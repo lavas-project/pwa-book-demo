@@ -4,6 +4,7 @@
             <div>
                 <h2>LAVAS</h2>
                 <h4>[ˈlɑ:vəz]</h4>
+                <router-link to="/login">登录页</router-link>
             </div>
         </div>
     </div>

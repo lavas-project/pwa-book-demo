@@ -2,7 +2,7 @@
     "name": "pwa-project",
     "version": "0.0.1",
     "description": "这是一个 Lavas PWA 项目",
-    "author": "lavas <liuruoran88@163.com>",
+    "author": "lavas",
     "private": true,
     "lavas": true,
     "scripts": {
