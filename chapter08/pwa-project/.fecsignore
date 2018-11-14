@@ -1,0 +1,8 @@
+node_modules
+config
+dist
+lib
+test
+_old
+build/templates
+*.html
