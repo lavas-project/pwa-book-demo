@@ -70,7 +70,7 @@ module.exports = {
         appshellUrl: '/appshell'
     },
     middleware: {
-        all: [], // 同时运行在客户端和服务端
+        all: ['login'], // 同时运行在客户端和服务端
         client: ['my-first-middleware'], // 仅客户端
         server: [] // 仅服务端
     }

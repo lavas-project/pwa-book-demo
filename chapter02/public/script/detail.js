@@ -20,7 +20,7 @@ const url = './assets/mockData/detail.json'
  * @param  {[type]} url 数据地址
  * @return {[type]}     [description]
  */
-app.getData = function(url) {
+app.getData = function (url) {
 
   // 请求最新数据
   let xhr = new XMLHttpRequest()
