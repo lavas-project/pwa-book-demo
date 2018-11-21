@@ -5,15 +5,15 @@
 'use strict'
 
 let app = {
-	sidebarShow: false,
-	loadingShow: true
+  sidebarShow: false,
+  loadingShow: true
 }
 
 const url = './assets/mockData/detail.json'
 
 /*******************
-* 页面方法
-*******************/
+ * 页面方法
+ *******************/
 
 /**
  * [getData description]
@@ -21,18 +21,17 @@ const url = './assets/mockData/detail.json'
  * @return {[type]}     [description]
  */
 app.getData = function (url) {
-
   // 请求最新数据
   let xhr = new XMLHttpRequest()
-  xhr.onreadystatechange = function() {
+  xhr.onreadystatechange = function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
       let response = JSON.parse(xhr.response)
       let results = response.data.data
       // app.updateTemplate(results)
 
-      setTimeout(function delay() {
+      setTimeout(function delay () {
         app.updateTemplate(results)
-      }, 3000)
+      }, 500)
     }
   }
   xhr.open('GET', url)
@@ -54,44 +53,40 @@ app.refresh = function () {
   app.getData(url)
 }
 
-
 /**********************************
-* 事件监听 大部分属于App Shell 部分
-***********************************/
+ * 事件监听 大部分属于App Shell 部分
+ ***********************************/
 
 // sidebar btn
 document.querySelector('.sidebar').addEventListener('click', function () {
-	app.closeSidebar()
+  app.closeSidebar()
 })
 
 document.querySelector('.icon-category').addEventListener('click', function () {
-	app.openSidebar()
+  app.openSidebar()
 })
 
 document.querySelector('.mask').addEventListener('click', function () {
-	app.closeSidebar()
+  app.closeSidebar()
 })
-
 
 document.querySelector('.icon-refresh').addEventListener('click', function () {
-	app.refresh()
+  app.refresh()
 })
 
-
 app.openSidebar = function () {
-	if (app.sidebarShow) return
-	document.querySelector('.mask').classList.remove('hide')
-	document.querySelector('.sidebar').classList.remove('hide')
-	app.sidebarShow = true
+  if (app.sidebarShow) return
+  document.querySelector('.mask').classList.remove('hide')
+  document.querySelector('.sidebar').classList.remove('hide')
+  app.sidebarShow = true
 }
 
 app.closeSidebar = function () {
-	if (!app.sidebarShow) return
-	document.querySelector('.mask').classList.add('hide')
-	document.querySelector('.sidebar').classList.add('hide')
-	app.sidebarShow = false
+  if (!app.sidebarShow) return
+  document.querySelector('.mask').classList.add('hide')
+  document.querySelector('.sidebar').classList.add('hide')
+  app.sidebarShow = false
 }
 
 // 请求数据并更新
 app.getData(url)
-	

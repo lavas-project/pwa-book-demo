@@ -1,0 +1,31 @@
+.todos {
+  padding: 10px;
+  line-height: 1;
+}
+
+.todos .add-btn {
+  font-size: 16px;
+}
+
+.todos ul {
+  font-size: 16px;
+	list-style: none;
+	padding: 0.5em 1em;
+  margin: 0;
+  text-align: left;
+}
+
+.todos ul li {
+	padding: 0.5em;
+	background: #FFF;
+	border-bottom: 1px solid #EEE;
+	margin: 0.5em 0;
+}
+
+.todos ul li.done {
+  color: #999;
+}
+
+.todos .delete {
+  float: right;
+}
