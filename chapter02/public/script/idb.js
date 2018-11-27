@@ -1,4 +1,6 @@
 
+/* globals fetch */
+
 (function (global) {
   const VERSION = 2
 
@@ -46,11 +48,57 @@
       })
     },
 
+    syncDataToServer () {
+      this.getByFilter(record => !record.sync)
+        .then(records => fetch('/update/todos', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(records)
+        }))
+        .then(res => res.json())
+        .then(ids => {
+          let updateItem = id => this.updateItem(id, {
+            sync: 1
+          })
+          return Promise.all(ids.map(updateItem))
+        }).then(() => {
+          return this.getByFilter(record => record.delete)
+            .then(records => {
+              return Promise.all(records.map(record => this.deleteItem(record.id)))
+            })
+        })
+    },
+
+    /**
+     * 获取全部待办数据，如果本地数据为空，则从服务器获取初始化数据，并存到indexeddb中
+     * @return <Promise<Array>>
+     */
+    getAllTodos () {
+      return this.getAllFromIndexedDB().then(todos => {
+        // 如果 indexeddb 里有数据直接返回
+        if (todos.length) {
+          return todos
+        }
+
+        // 如果没有数据，从服务获取初始化数据
+        return fetch('/todos')
+          .then(res => res.json())
+          .then(todos => {
+            // 将返回的数据保存到 indexeddb
+            todos.forEach(todo => this.addItem(todo))
+            return todos
+          })
+      })
+    },
+
     /**
      * 获取数据库所有记录
      * @return {Promise<Array>}
      */
-    getAll () {
+    getAllFromIndexedDB () {
       return this.openDB().then(db => {
         let store = db.transaction('todo', 'readonly').objectStore('todo')
 
@@ -160,4 +208,8 @@
       })
     }
   }
+
+  setInterval(() => {
+    global.idb.syncDataToServer()
+  }, 1000)
 })(this)

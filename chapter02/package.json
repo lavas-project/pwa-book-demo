@@ -2,7 +2,7 @@
   "name": "pwa-book-demo",
   "description": "PWA book demos",
   "scripts": {
-    "server": "node server.js"
+    "server": "node server/index.js"
   },
   "devDependencies": {
     "express": "^4.16.4",
@@ -12,5 +12,9 @@
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-standard": "^3.1.0",
     "eslint-plugin-promise": "^3.8.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "lowdb": "^1.0.0"
   }
 }
