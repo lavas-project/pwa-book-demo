@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <title>Notification API </title>
+  </head>
+  <body>
+    <h1>Notification API 示例</h1>
+    <p>本示例主要展示了 Notification API 在主线程中的使用方法，通过配置不同的参数来展示不同参数对通知的展现与功能上的影响。由于 Notification API 在不同的浏览器上的支持度不同，因此在部分浏览器可能不支持 Notification API，也有可能部分配置失效。</p>
+    <p>当前浏览器支持情况：<span id="notification-state"></span></p>
+
+    <h2>title</h2>
+    <p>通知的标题，改选项为必须配置项</p>
+    <button id="btn-title" class="btn">普通标题</button><button id="btn-long-title" class="btn">长标题</button>
+
+    <h2>body</h2>
+    <p>通知内容</p>
+    <button id="btn-body" class="btn">普通通知内容</button><button id="btn-long-body" class="btn">长通知内容</button>
+
+    <h2>dir</h2>
+    <p>通知文字显示方向，可取值 <strong>ltr</strong> 和 <strong>rtl</strong>，默认值为 <strong>auto</strong>，浏览器会自动根据文字语言类型确定显示方向。</p>
+    <button id="btn-dir-ltr" class="btn">dir：ltr</button><button id="btn-dir-rtl" class="btn">dir：rtl</button>
+
+    <h2>icon</h2>
+    <p>通知图标</p>
+    <button id="btn-icon" class="btn">icon</button>
+
+    <h2>badge</h2>
+    <p>通知小图标</p>
+    <button id="btn-badge" class="btn">badge</button>
+
+    <h2>image</h2>
+    <p>通知图片预览</p>
+    <button id="btn-image" class="btn">image</button>
+
+    <h2>vibrate</h2>
+    <p>通知振动模式</p>
+    <button id="btn-vibrate" class="btn">vibrate</button>
+
+    <h2>tag</h2>
+    <p>通过设置通知标签，对通知进行分类</p>
+    <button id="btn-tag-warning" class="btn">tag：警告</button><button id="btn-tag-error" class="btn">tag：错误</button>
+
+    <h2>renotify</h2>
+    <p>配合 tag 属性一起使用，当设置为 true 时，在接收到相同分类的通知的时候，后一条通知将覆盖前一条，不会多条平铺展示；当设置为 false 时，则所有的通知平铺展示。</p>
+    <p>点击下方不同的按钮，将会同时生成 3 条不同内容但 tag 相同的通知，可以观察 renotify 在不同取值情况下通知的展示方式。</p>
+    <button id="btn-renotify-true" class="btn">renotify：true</button><button id="btn-renotify-false" class="btn">renotify：false</button>
+
+    <h2>data</h2>
+    <p>data 是任意与通知相关联的数据，可以通过通知实例 notification.data 进行访问。本示例传入的 data 为点击按钮创建通知的时间，点击通知之后，会将 data 的值显示到按钮下方的句子中。</p>
+    <button id="btn-data" class="btn">data</button>
+    <p>创建通知的时间为： <span id="notification-data-result"></span></p>
+
+    <h2>actions</h2>
+    <p>通过 actions 属性可以在通知上定义不同的按钮，同时可以针对不同按钮设置不同的点击回调</p>
+    <button id="btn-actions" class="btn">actions</button>
+    <p>当前点击了：<span class="notification-actions-result"></span></p>
+
+    <h2>requireInteraction</h2>
+    <p>是否强制要求用户交互。当 <strong>requireInteraction</strong>设置为 true 时，弹出的通知将不会主动消失，需要用户主动点击关闭。</p>
+    <button id="btn-require-interaction">requireInteraction：true</button>
+
+
+    <script src="./index.js"></script>
+  </body>
+</html>
