@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <title>Notification API </title>
+  </head>
+  <body>
+    <h1>Notification API 在 Service Worker 作用域下执行示例</h1>
+    <p>本示例主要展示了 Notification API 在 Service Worker 作用域下如何触发桌面通知显示，监听通知点击事件，以及结合 clients.openWindow 打开网页等等。</p>
+    <button id="open-window">open window</button>
+    <script>
+      function requirePermission () {
+        if (!window.Notification) {
+          return Promise.reject()
+        }
+        switch (Notification.permission) {
+          case 'granted':
+            return Promise.resolve()
+          case 'denied':
+            return Promise.reject()
+          default:
+            return Notification.requirePermission()
+              .then(function (permission) {
+                if (permission === 'granted') {
+                  return Promise.resolve()
+                }
+                return Promise.reject()
+              })
+        }
+      }
+
+      function registerServiceWorker () {
+        return navigator.serviceWorker.register('./sw.js')
+      }
+
+      function registerButton () {
+        document.getElementById('open-window').addEventListener('click', function () {
+          navigator.serviceWorker.controller.postMessage({
+            title: '你好',
+            body: '我叫李雷，交个朋友吧',
+            icon: 'https://gss0.baidu.com/9rkZbzqaKgQUohGko9WTAnF6hhy/assets/pwa/demo/pwa-icon.png',
+            url: 'https://www.baidu.com'
+          })
+        })
+      }
+
+      requirePermission()
+        .then(registerServiceWorker)
+        .then(registerButton)
+    </script>
+  </body>
+</html>
