@@ -20,7 +20,7 @@
           case 'denied':
             return Promise.reject()
           default:
-            return Notification.requirePermission()
+            return Notification.requestPermission()
               .then(function (permission) {
                 if (permission === 'granted') {
                   return Promise.resolve()
