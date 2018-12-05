@@ -15,5 +15,8 @@
   </head>
   <body>
     <h1>Progressive Web App</h1>
+    <script>
+      navigator.serviceWorker.register('./sw.js', {scope: '/pwa-book-demo/chapter-05/manifest/'})
+    </script>
   </body>
 </html>
