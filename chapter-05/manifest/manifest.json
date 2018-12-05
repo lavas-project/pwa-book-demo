@@ -1,5 +1,6 @@
 {
-  "short_name": "hello",
+  "short_name": "PWA",
+  "name": "Progressive Web App",
   "icons": [
     {
       "src": "https://searchfe.github.io/pwa-demo/manifest-demo/images/logo-144x144.png",
@@ -7,6 +8,8 @@
       "sizes": "144x144"
     }
   ],
-  "start_url": "/",
-  "display": "standalone"
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1976d2"
 }
