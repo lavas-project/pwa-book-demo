@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>PWA - DETAIL</title>
+	<link rel="manifest" href="./manifest.json">
+	<link rel="stylesheet" href="./style/fonts/iconfont.css">
+	<link rel="stylesheet" href="./style/index.css">
+</head>
+<body>
+	<!-- App Shell header -->
+	<header class="header-wrapper">
+		<div class="header-inner-wrapper">
+			<div class="header-left-logo btn"><i class="iconfont icon-category ripple"></i></div>
+			<div class="header-mid-name">Header</div>
+			<div class="header-right btn"><i class="iconfont icon-refresh ripple"></i></div>
+		</div>
+	</header>
+
+	<!-- App Shell sidebar -->
+	<section class="sidebar hide">
+		<div class="sidebar-header">Sidebar</div>
+		<div class="sidebar-main">
+			<ul>
+				<li class="sidebar-list-item ripple">
+					<a href="/index.html" class="sidebar-user">
+						<i class="iconfont icon-me"></i>
+						<span>Index Page</span>
+					</a>
+				</li>
+				<li class="sidebar-list-item ripple">
+					<a href="/detail.html" class="sidebar-set">
+						<i class="iconfont icon-me"></i>
+						<span>Detail Page</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</section>
+
+	<!-- App Shell main context -->
+	<section class="main">
+		<div class="skeleton">skeleton</div>
+	<!-- 	<div class="loading">
+			<span></span>
+		</div> -->
+	</section>
+
+	<!-- mask -->
+	<div class="mask hide"></div>
+
+	<!-- service worker -->
+	<script>
+		window.onload = function () {
+			// TODO add service worker code here
+			if ('serviceWorker' in navigator) {
+				navigator.serviceWorker
+			    .register('./sw.js')
+			    .then(function() { 
+			    	console.log('Service Worker Registered');
+			    });
+			}
+		}
+	</script>
+	<script src="./script/detail.js"></script>
+</body>
+</html>
+

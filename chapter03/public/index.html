@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>PWA - HOME</title>
+	<link rel="manifest" href="./manifest.json">
+	<link rel="stylesheet" href="./style/fonts/iconfont.css">
+	<link rel="stylesheet" href="./style/index.css">
+	<link rel="stylesheet" href="./style/todo.css">
+</head>
+<body>
+	<!-- App Shell header -->
+	<header class="header-wrapper">
+		<div class="header-inner-wrapper">
+			<div class="header-left-logo btn"><i class="iconfont icon-category ripple"></i></div>
+			<div class="header-mid-name">Header</div>
+			<div class="header-right btn"><i class="iconfont icon-refresh ripple"></i></div>
+		</div>
+	</header>
+
+	<!-- App Shell sidebar -->
+	<section class="sidebar hide">
+		<div class="sidebar-header">Sidebar</div>
+		<div class="sidebar-main">
+			<ul>
+				<li class="sidebar-list-item ripple">
+					<a href="/index.html" class="sidebar-user">
+						<i class="iconfont icon-me"></i>
+						<span>Index Page</span>
+					</a>
+				</li>
+				<li class="sidebar-list-item ripple">
+					<a href="/detail.html" class="sidebar-set">
+						<i class="iconfont icon-me"></i>
+						<span>Detail Page</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</section>
+
+	<!-- App Shell main context -->
+	<section class="main">
+		<!-- <div class="skeleton">skeleton</div> -->
+		<div class="loading">
+			<span></span>
+		</div>
+	</section>
+
+	<!-- mask -->
+	<div class="mask hide"></div>
+
+	<!-- service worker -->
+	<script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js').then(function(registration) {
+          // 注册成功
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }).catch(function(err) {
+          // 注册失败 :(
+          console.log('ServiceWorker registration failed: ', err);
+        });
+      });
+    }
+	</script>
+	<script src="./script/idb.js"></script>
+	<script src="./script/index.js"></script>
+</body>
+</html>
+

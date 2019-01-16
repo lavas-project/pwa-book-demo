@@ -1,5 +1,5 @@
 /**
- *  index.js 主页面js，事件绑定和处理
+ *  detail.js 详情页js，事件绑定和处理
  */
 
 'use strict'
@@ -9,7 +9,7 @@ let app = {
   loadingShow: true
 }
 
-const url = './assets/mockData/index.json'
+const url = './assets/mockData/detail.json'
 
 /*******************
  * 页面方法
@@ -88,4 +88,5 @@ app.closeSidebar = function () {
   app.sidebarShow = false
 }
 
+// 请求数据并更新
 app.getData(url)
