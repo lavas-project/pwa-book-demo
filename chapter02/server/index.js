@@ -7,7 +7,6 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path')
 const fs = require('fs')
-const db = require('./db')
 const app = express()
 const port = 8088
 
@@ -20,33 +19,6 @@ app.use(bodyParser.json())
 
 app.get('/mockData/:id', function (req, res) {
   res.json(getMockData('/mockData/' + req.params.id))
-})
-
-app.get('/todos', function (req, res) {
-  res.json(db.get('todos').value())
-})
-
-app.post('/update/todos', function (req, res) {
-  let records = req.body
-  let todosCollection = db.get('todos')
-  let ids = records.map(record => {
-    record.sync = 1
-
-    let todo = todosCollection.find({
-      id: record.id
-    })
-
-    if (todo.value()) {
-      todo.assign(record).write()
-    } else {
-      todosCollection.push(record).write()
-    }
-    return record.id
-  })
-
-  // 删除已被删除的记录
-  todosCollection.remove({ delete: 1 }).write()
-  res.json(ids)
 })
 
 // 启动服务器
