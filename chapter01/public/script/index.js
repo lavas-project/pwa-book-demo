@@ -1,5 +1,5 @@
 /**
- *  index.js 主页面js，事件绑定和处理
+ * index.js 主页面js，事件绑定和处理
  */
 
 'use strict'

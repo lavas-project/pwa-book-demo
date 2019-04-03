@@ -11,8 +11,8 @@ const app = express()
 const port = 8088
 
 // 设定静态文件目录，比如本地文件
-// 目录为pwa-book-demo/public/images，访问
-// 网址则显示为http://localhost:8088/images
+// 目录为 pwa-book-demo/public/images，访问
+// 网址则显示为 http://localhost:8088/images
 app.use(express.static(path.join(__dirname, '../public')))
 
 app.use(bodyParser.json())
@@ -27,10 +27,10 @@ app.listen(port, function () {
 })
 
 /**
- * 读取json数据
+ * 读取 JSON 数据
  *
- * @param  {string} dataPath  对应json数据文件在mockup下的路径
- * @return {Object | string}  JSON对象或JSON字符串
+ * @param {string} dataPath 对应 JSON 数据文件在 mockup 下的路径
+ * @returns {Object|string} JSON 对象或 JSON 字符串
  */
 function getMockData (dataPath) {
   try {

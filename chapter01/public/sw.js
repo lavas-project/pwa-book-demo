@@ -18,7 +18,6 @@ let filesToCache = [
   '/style/fonts/iconfont.ttf',
   '/style/fonts/iconfont.woff',
   '/assets/images/sidebar_bg.jpg',
-  '/assets/images/loading1.gif',
   '/assets/images/icons/icon_144x144.png',
   '/assets/images/icons/icon_152x152.png',
   '/assets/images/icons/icon_192x192.png',
