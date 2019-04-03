@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>PWA - HOME</title>
+	<title>PWA Chapter01 Demo</title>
 	<link rel="manifest" href="./manifest.json">
 	<link rel="stylesheet" href="./style/fonts/iconfont.css">
 	<link rel="stylesheet" href="./style/index.css">
@@ -55,19 +55,22 @@
 	<div class="mask hide"></div>
 
 	<!-- service worker -->
-	<script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js').then(function(registration) {
-          // 注册成功
-          console.log('ServiceWorker registration successful with scope: ', registration.scope);
-        }).catch(function(err) {
-          // 注册失败 :(
-          console.log('ServiceWorker registration failed: ', err);
-        });
-      });
-    }
-	</script>
+	<!-- <script>
+    // 判断浏览器是否支持 Service Worker
+		if ('serviceWorker' in navigator) {
+			// 在 load 事件触发后注册 Service Worker，确保 Service Worker 的注册不会影响首屏速度
+			window.addEventListener('load', function () {
+				// 注册 Service Worker
+				navigator.serviceWorker.register('/sw.js').then(function (registration) {
+					// 注册成功
+					console.log('ServiceWorker registration successful with scope: ', registration.scope)
+				}).catch(function (err) {
+					// 注册失败 :(
+					console.warn('ServiceWorker registration failed: ', err)
+				})
+			})
+		}
+	</script> -->
 	<script src="./script/index.js"></script>
 </body>
 </html>
