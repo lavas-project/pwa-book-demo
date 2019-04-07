@@ -1,6 +1,7 @@
 {
   "name": "pwa-book-demo",
   "description": "PWA book demos",
+  "author": "baidu open web team",
   "scripts": {
     "server": "node server/index.js"
   },
