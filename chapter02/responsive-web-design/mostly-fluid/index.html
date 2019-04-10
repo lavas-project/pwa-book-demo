@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>大体流动布局 - 响应式布局</title>
+  <style>
+    body {
+      margin: 0;
+    }
+    .container {
+      display: flex;
+      flex-flow: wrap;
+    }
+    .box {
+      width: 100%;
+      min-height: 150px;
+    }
+    .b1 {
+      background: #009;
+    }
+    .b2 {
+      background: #06c;
+    }
+    .b3 {
+      background: #39f;
+    }
+    .b4 {
+      background: #6cf;
+    }
+    .b5 {
+      background: #cff;
+    }
+    @media screen and (min-width: 450px) {
+      .b2, .b3 {
+        width: 50%;
+      }
+    }
+    @media screen and (min-width: 800px) {
+      .b1, .b2 {
+        width: 50%;
+      }
+      .b3, .b4, .b5 {
+        width: 33.333333%;
+      }
+    }
+    @media screen and (min-width: 980px) {
+      .container {
+        max-width: 980px;
+        margin: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="box b1"></div>
+    <div class="box b2"></div>
+    <div class="box b3"></div>
+    <div class="box b4"></div>
+    <div class="box b5"></div>
+  </div>
+</body>
+</html>

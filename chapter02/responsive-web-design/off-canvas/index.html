@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>画布溢出 - 响应式布局</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ddd;
+    }
+    html, body, main {
+      height: 100%;
+      width: 100%;
+    }
+    #mask {
+      display: none;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+      background: rgba(0, 0, 0, .5)
+    }
+    #mask.open {
+      display: block;
+    }
+    nav, main {
+      box-sizing: border-box;
+      padding: 20px;
+    }
+    nav {
+      width: 275px;
+      height: 100%;
+      position: absolute;
+      transform: translate(-275px, 0);
+      transition: transform 0.3s ease-in-out;
+      background: #39f;
+      z-index: 2;
+    }
+    nav.open {
+      transform: translate(0, 0);
+    }
+    svg {
+      width: 1.2em;
+    }
+    @media screen and (min-width: 800px) {
+      nav {
+        position: relative;
+        transform: translate(0, 0);
+      }
+      body {
+        display: flex;
+        flex-flow: wrap;
+      }
+      main {
+        width: auto;
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav></nav>
+  <main>
+    <a id="menu">
+      <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars" class="svg-inline--fa fa-bars fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+        <path fill="currentColor"
+          d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z">
+        </path>
+      </svg>
+    </a>
+  </main>
+  <div id="mask"></div>
+  <script>
+    let mask = document.querySelector('#mask')
+    let nav = document.querySelector('nav')
+    let menu = document.querySelector('a')
+
+    // 点击菜单，显示或隐藏菜单栏
+    menu.addEventListener('click', event => {
+      nav.classList.toggle('open')
+      mask.classList.toggle('open')
+    })
+    // 点击遮罩，隐藏菜单栏
+    mask.addEventListener('click', event => {
+      nav.classList.remove('open')
+      mask.classList.remove('open')
+    })
+  </script>
+</body>
+</html>

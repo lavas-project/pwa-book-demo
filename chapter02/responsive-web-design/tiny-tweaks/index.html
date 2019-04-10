@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>微调 - 响应式布局</title>
+  <style>
+    body {
+      margin: 0;
+    }
+    .container {
+      display: flex;
+      flex-flow: wrap;
+    }
+    .box {
+      width: 100%;
+      min-height: 150px;
+    }
+    .b1 {
+      background: #39f;
+      text-align: center;
+      padding-top: 10%;
+      font-size: 1em;
+    }
+    @media screen and (min-width: 450px) {
+      .b1 {
+        font-size: 2em;
+      }
+    }
+    @media screen and (min-width: 800px) {
+      .b1 {
+        font-size: 4em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="box b1">字体大小</div>
+  </div>
+</body>
+</html>
