@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PWA Chapter05 Demo</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="stylesheet" href="./style/fonts/iconfont.css">
+  <link rel="stylesheet" href="./style/index.css">
+</head>
+<body>
+  <header class="header-wrapper">
+    <div class="header-inner-wrapper">
+      <div class="header-mid-name">Notification API 示例</div>
+    </div>
+  </header>
+
+  <section class="main">
+    <div class="content">
+      <p>本示例主要展示了 Notification API 在主线程中的使用方法，通过配置不同的参数来展示不同参数对通知的展现与功能上的影响。由于 Notification API 在不同的浏览器上的支持度不同，因此在部分浏览器可能不支持 Notification API，也有可能部分配置失效。</p>
+      <p>当前浏览器支持情况：<button id="notification-state"></button></p>
+  
+      <h2>title&body</h2>
+      <p>titie: 通知的标题，该选项为必须配置项</p>
+      <p>body: 通知内容</p>
+      <button id="btn-title-body" class="btn">普通标题&内容</button>
+      <button id="btn-long-title-body" class="btn">长标题&长内容</button>
+  
+      <h2>icon</h2>
+      <p>通知图标</p>
+      <button id="btn-icon" class="btn">通知图标</button>
+  
+      <h2>image</h2>
+      <p>通知图片预览</p>
+      <button id="btn-image" class="btn">通知图片</button>
+  
+      <h2>badge</h2>
+      <p>通知小图标</p>
+      <button id="btn-badge" class="btn">通知小图标</button>
+  
+      <h2>dir</h2>
+      <p>通知文字显示方向，可取值 <strong>ltr</strong> 和 <strong>rtl</strong>，默认值为 <strong>auto</strong>，浏览器会自动根据文字语言类型确定显示方向。</p>
+      <button id="btn-dir-ltr" class="btn">dir：ltr</button><button id="btn-dir-rtl" class="btn">dir：rtl</button>
+  
+      
+      <h2>vibrate</h2>
+      <p>通知振动模式</p>
+      <button id="btn-vibrate" class="btn">vibrate</button>
+  
+      <h2>tag</h2>
+      <p>通过设置通知标签，具有相同 tag 的通知会被分类到一起。</p>
+      <button id="btn-tag-error-first" class="btn">tag：错误类型</button>
+      <button id="btn-tag-warning-first" class="btn">tag：警告类型</button>
+      <button id="btn-tag-error-second" class="btn">tag：错误类型</button>
+  
+      <h2>renotify</h2>
+      <p>配合 tag 属性一起使用，当设置为 true 时，在接收到相同分类的通知的时候，后一条通知将静默覆盖前一条，不会多条平铺展示；当设置为 false 时，则所有的通知平铺展示。</p>
+      <p>点击下方不同的按钮，将会同时生成 3 条不同内容但 tag 相同的通知，可以观察 renotify 在不同取值情况下通知的展示方式。</p>
+      <button id="btn-renotify-true-first" class="btn">renotify：true&tag：错误类型</button>
+      <button id="btn-renotify-true-second" class="btn">renotify：true&tag：警告类型</button>
+      <button id="btn-renotify-true-third" class="btn">renotify：true&tag：错误类型</button>
+      <button id="btn-renotify-false-first" class="btn">renotify：false&tag：错误类型</button>
+      <button id="btn-renotify-false-second" class="btn">renotify：false&tag：警告类型</button>
+      <button id="btn-renotify-false-third" class="btn">renotify：false&tag：错误类型</button>
+  
+      <h2>data</h2>
+      <p>data 是任意与通知相关联的数据，可以通过通知实例 notification.data 进行访问。本示例传入的 data 为点击按钮创建通知的时间，点击通知之后，会将 data 的值显示在控制台中。</p>
+      <button id="btn-data" class="btn">data</button>
+  
+      <h2>actions</h2>
+      <p>通过 actions 属性可以在通知上定义不同的按钮，同时可以针对不同按钮设置不同的点击回调。本示例点击“点赞”后会在控制台输出相应的信息。</p>
+      <button id="btn-actions" class="btn">actions</button>
+  
+      <h2>requireInteraction</h2>
+      <p>是否强制要求用户交互。当 <strong>requireInteraction</strong>设置为 true 时，弹出的通知将不会主动消失，需要用户主动点击关闭。</p>
+      <button id="btn-require-interaction">requireInteraction：true</button>
+    </div>
+  </section>
+
+  <!-- service worker -->
+  <script>
+    // 判断浏览器是否支持 Service Worker
+    if ('serviceWorker' in navigator) {
+      // 在 load 事件触发后注册 Service Worker，确保 Service Worker 的注册不会影响首屏速度
+      window.addEventListener('load', function () {
+        // 注册 Service Worker
+        navigator.serviceWorker.register('/sw.js').then(function (registration) {
+          // 注册成功
+          console.log('ServiceWorker registration successful with scope: ', registration.scope)
+        }).catch(function (err) {
+          // 注册失败 :(
+          console.warn('ServiceWorker registration failed: ', err)
+        })
+      })
+    }
+  </script>
+  <script src="./script/notification.js"></script>
+</body>
+</html>
+
