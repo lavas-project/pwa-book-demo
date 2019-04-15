@@ -1,0 +1,31 @@
+{
+  "name": "PWA Chapter05 Demo",
+  "short_name": "Chapter05 Demo",
+  "icons": [
+    {
+      "src": "assets/images/icons/icon_144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/images/icons/icon_152x152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/images/icons/icon_192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/images/icons/icon_512x512.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#fff",
+  "theme_color": "#1976d2",
+  "gcm_sender_id": "305692122376"
+}

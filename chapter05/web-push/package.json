@@ -1,0 +1,21 @@
+{
+  "name": "pwa-book-demo",
+  "description": "PWA book demos",
+  "scripts": {
+    "server": "node server/index.js"
+  },
+  "devDependencies": {
+    "eslint": "^5.0.0-alpha",
+    "eslint-config-standard": "^12.0.0-alpha",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "express": "^4.16.4",
+    "web-push": "^3.3.3"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "lowdb": "^1.0.0"
+  }
+}
