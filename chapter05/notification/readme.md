@@ -12,4 +12,4 @@ npm install
 npm run server
 ```
 
-可直接访问 http://127.0.0.1:8088/index.html，手机上访问本地服务请使用代理。
+可直接访问 `http://127.0.0.1:8088/index.html`，手机上访问本地服务请使用代理。
