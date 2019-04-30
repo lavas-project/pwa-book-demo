@@ -66,6 +66,9 @@ function register () {
   document.getElementById('btn-data').addEventListener('click', notifyData)
   document.getElementById('btn-actions').addEventListener('click', notifyActions)
   document.getElementById('btn-require-interaction').addEventListener('click', notifyRequireInteraction)
+
+  // 事件
+  document.getElementById('btn-notificationclick').addEventListener('click', notifyOpenWindow)
 }
 
 function displayNotification (title, options) {
@@ -213,7 +216,9 @@ function notifyActions () {
   displayNotification('PWA-Book-Demo 测试 actions', {
     body: '点赞按钮可点击',
     icon: 'https://gss0.baidu.com/9rkZbzqaKgQUohGko9WTAnF6hhy/assets/pwa/demo/pwa-icon.png',
-    data: new Date(Date.now()).toString(),
+    data: {
+      time: new Date(Date.now()).toString()
+    },
     actions: [
       {
         action: 'like',
@@ -221,6 +226,17 @@ function notifyActions () {
         icon: '/assets/images/like-icon.png'
       }
     ]
+  })
+}
+// 测试点击事件，点击打开新页面
+function notifyOpenWindow () {
+  displayNotification('你好', {
+    body: '我叫李雷，交个朋友吧',
+    icon: 'https://gss0.baidu.com/9rkZbzqaKgQUohGko9WTAnF6hhy/assets/pwa/demo/pwa-icon.png',
+    data: {
+      time: new Date(Date.now()).toString(),
+      url: 'https://www.baidu.com'
+    }
   })
 }
 

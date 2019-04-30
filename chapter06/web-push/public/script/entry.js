@@ -2,9 +2,8 @@
  * @file entry.js
  * @description web push client
  */
-
-// 注册 service worker 并缓存 registration
 const VAPIDPublicKey = '<Your Public Key>'
+// 注册 service worker 并缓存 registration
 let registration
 function registerServiceWorker () {
   if (!navigator.serviceWorker) {

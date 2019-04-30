@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PWA Chapter05 Demo</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="stylesheet" href="./style/fonts/iconfont.css">
+  <link rel="stylesheet" href="./style/index.css">
+</head>
+<body>
+  <header class="header-wrapper">
+    <div class="header-inner-wrapper">
+      <div class="header-mid-name">Install prompt 示例</div>
+    </div>
+  </header>
+  <section class="main">
+    <button class="disabled" id="btn">点击安装到桌面</button>
+  </section>
+  <!-- service worker -->
+  <script>
+    // 判断浏览器是否支持 Service Worker
+    if ('serviceWorker' in navigator) {
+      // 在 load 事件触发后注册 Service Worker，确保 Service Worker 的注册不会影响首屏速度
+      window.addEventListener('load', function () {
+        // 注册 Service Worker
+        navigator.serviceWorker.register('/sw.js').then(function (registration) {
+          // 注册成功
+          console.log('ServiceWorker registration successful with scope: ', registration.scope)
+        }).catch(function (err) {
+          // 注册失败 :(
+          console.warn('ServiceWorker registration failed: ', err)
+        })
+      })
+    }
+  </script>
+  <script>
+    // 获取按钮元素
+    let button = document.getElementById('btn')
+    // 保存安装提示事件
+    let savedPrompt
+    window.addEventListener('beforeinstallprompt', function (e) {
+      // 阻止默认提示弹出
+      e.preventDefault()
+      // 把事件存起来
+      savedPrompt = e
+      // 显示按钮
+      button.classList.remove('disabled')
+    })
+    button.addEventListener('click', function () {
+      // 隐藏按钮
+      button.classList.add('disabled')
+      // 触发安装提示展现
+      savedPrompt.prompt()
+      // 用户行为判断
+      savedPrompt.userChoice.then(function (result) {
+        // 用户操作之后清空事件
+        savedPrompt = null
+        if (result.outcome === 'accept') {
+          // 用户将站点添加到桌面
+        } else {
+          // 用户取消操作
+        }
+      })
+    })
+  </script>
+  </body>
+</html>

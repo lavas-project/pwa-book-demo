@@ -45,13 +45,3 @@ self.addEventListener('activate', function (e) {
   )
   return self.clients.claim()
 })
-
-self.addEventListener('notificationclick', function (event) {
-  const data = event.notification.data
-  console.log('测试 data 通知时间:' + data)
-
-  if (event.action === 'like') {
-    console.log('点击了点赞按钮')
-  }
-  event.notification.close()
-})

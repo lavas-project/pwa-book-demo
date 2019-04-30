@@ -7,31 +7,32 @@ var githubLogin = document.querySelector('.github-login-button')
 
 form.addEventListener('submit', function (event) {
   event.preventDefault()
-
   fetch('/auth/password', {
     method: 'POST',
     credentials: 'include',
     body: new FormData(event.target)
   }).then(function (res) {
+    // 验证用户邮箱密码
     if (res.status === 200) {
       return Promise.resolve()
     } else {
       return Promise.reject('login error')
     }
   }).then(function () {
+    // 判断是否支持 Credential API
     if (window.PasswordCredential) {
-      // 登录成功保存用户凭证并跳转至首页
+      // 保存用户凭证
       var cred = new PasswordCredential(event.target)
       return navigator.credentials.store(cred)
     } else {
       return Promise.resolve()
     }
   }).then(function () {
+    // 登录成功跳转至首页
     window.location.href = '/'
   }).catch(function (error) {
-    // show toast here
-    window.location.href = '/'
-    console.log('login error', error)
+    // 登录出错展示错误信息
+    showErrorToast()
   })
 })
 
