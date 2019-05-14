@@ -1,0 +1,17 @@
+#title {
+  color: blue;
+  padding: 0 10px;
+}
+
+#content {
+  padding: 5px 10px;
+}
+
+.bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  background: #dcdcdc;
+}
