@@ -52,7 +52,7 @@ self.addEventListener('push', function (e) {
     return
   }
   // 解析获取推送消息
-  let payload = e.data.text()
+  let payload = e.data.json()
   // 根据推送消息生成桌面通知并展现出来
   let promise = self.registration.showNotification(payload.title, {
     body: payload.body,
@@ -66,8 +66,9 @@ self.addEventListener('push', function (e) {
 
 // 监听通知点击事件
 self.addEventListener('notificationclick', function (e) {
+  console.log(e, '====')
   // 关闭窗口
   e.notification.close()
   // 打开网页
-  e.waitUntil(self.clients.openWindow(e.data.url))
+  e.waitUntil(self.clients.openWindow(e.notification.data.url))
 })

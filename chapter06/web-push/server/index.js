@@ -15,7 +15,7 @@ const GCMAPIkey = config.GCMAPIkey
 
 // 配置 web push
 webpush.setVapidDetails(
-  'mailto:your-email@provider.com',
+  'mailto:292552698@qq.com',
   VAPIDkeys.publicKey,
   VAPIDkeys.privateKey
 )
@@ -27,16 +27,17 @@ let pushSubscriptionSet = new Set()
 // 定时任务，每隔 10 分钟向推送服务器发送消息
 setInterval(function () {
   if (pushSubscriptionSet.size > 0) {
+    console.log(pushSubscriptionSet.size);
     pushSubscriptionSet.forEach(function (pushSubscription) {
       webpush.sendNotification(pushSubscription, JSON.stringify({
-        title: '你好',
-        body: '我叫李雷，很高兴认识你',
-        icon: 'https://path/to/icon',
-        url: 'http://localhost'
+        title: 'smartwen',
+        body: '听我说谢谢你，因为有你温暖了四季^_^',
+        icon: 'https://r.hrc.oa.com/photo/100/smartwen.png',
+        url: 'https://mcnqqzz.woa.com/platform/talent-aduit'
       }))
     })
   }
-}, 100 * 60)
+}, 10000);
 
 // 设定静态文件目录，比如本地文件
 // 目录为 pwa-book-demo/public/images，访问
