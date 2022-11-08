@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "body-parser": "^1.18.3",
+    "firebase": "^9.13.0",
     "lowdb": "^1.0.0"
   }
 }

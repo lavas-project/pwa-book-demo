@@ -2,7 +2,7 @@
  * @file entry.js
  * @description web push client
  */
-const VAPIDPublicKey = '<Your Public Key>'
+const VAPIDPublicKey = 'BKnzf0Ufa9VzpCQ_RBirECkguzI6_6NuVqg9FmVu1gzMHC9hsgrpdYvU3V1buCxSOmUFSUKD6hFkIc69iwM9sd4'
 // 注册 service worker 并缓存 registration
 let registration
 function registerServiceWorker () {
@@ -39,6 +39,7 @@ function subscribeAndDistribute (registration) {
   return registration.pushManager.getSubscription().then(function (subscription) {
     // 如果已经订阅过，就不重新订阅了
     if (subscription) {
+      distributePushResource(subscription)
       return
     }
     // 如果尚未订阅则发起推送订阅
